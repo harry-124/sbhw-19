@@ -33,6 +33,15 @@ k2 = 0
 k3 = 0
 k4 = 0
 
+def encode(w1,w2,w3):
+    w1 = (w1+255)/2
+    w2 = (w2+255)/2
+    w3 = (w3+255)/2
+    w1 = int(w1)
+    w2 = int(w2)
+    w3 = int(w3)
+    return w1,w2,w3
+
 def invk(tw):
     vx = tw.linear.x
     vy = tw.linear.y
@@ -97,6 +106,7 @@ def b1t(msg):
     global w2b1
     global w3b1
     w1b1,w2b1,w3b1 = invk(msg)
+    w1b1,w2b1,w3b1 = encode(w1b1,w2b1,w3b1)
     return 0
 
 def b2t(msg):
@@ -104,6 +114,7 @@ def b2t(msg):
     global w2b2
     global w3b2
     w1b2,w2b2,w3b2 = invk(msg)
+    w1b2,w2b2,w3b2 = encode(w1b2,w2b2,w3b2)
     return 0
 
 def b3t(msg):
@@ -111,6 +122,7 @@ def b3t(msg):
     global w2b3
     global w3b3
     w1b3,w2b3,w3b3 = invk(msg)
+    w1b3,w2b3,w3b3 = encode(w1b3,w2b3,w3b3)
     return 0
 
 def b4t(msg):
@@ -118,6 +130,7 @@ def b4t(msg):
     global w2b4
     global w3b4
     w1b4,w2b4,w3b4 = invk(msg)
+    w1b4,w2b4,w3b4 = encode(w1b4,w2b4,w3b4)
     return 0
 
 def b1d(msg):
