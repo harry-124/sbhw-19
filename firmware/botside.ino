@@ -6,7 +6,7 @@ XBee xbee = XBee();
 XBeeResponse response = XBeeResponse();
 
 Rx16Response rx16 = Rx16Response();
-#define BOTID 2
+#define BOTID 4
 
 uint8_t option = 0;
 uint8_t data;
@@ -61,7 +61,10 @@ void loop()
                   
                   ::r1 = s.toInt();
                   //::r1=rerange(::r1);
-                    ::r1 = 3*::r1/2;
+                  //if(::r1 < 0)
+                  //  ::r1 = 3*::r1/2;
+                  ::r1 = ::r1 * 2;
+                  ::r1 = ::r1 - 255;
                   if(::r1 > 255){
                     ::r1 = 255;
                   }
@@ -69,14 +72,17 @@ void loop()
                     ::r1 = -255;
                   }
                   m1.mspeed(::r1);
-                  /*Serial.print("Wheel 1: ");*/
-                  //Serial.print(r1);
+                  //Serial.print("Wheel 1: ");
+                  //Serial.print(::r1);
                   break;
                 case 5*(BOTID-1)+2:
                   
                   ::r2 = s.toInt();
                   //::r2 = rerange(::r2);
-                    ::r2 = 3*::r2/2;
+                  //if(::r2 < 0)
+                  //  ::r2 = 3*::r2/2;
+                  ::r2 = ::r2 *2;
+                  ::r2 = ::r2 - 255;
                   if(::r2 > 255){
                     ::r2 = 255;
                   }
@@ -85,11 +91,14 @@ void loop()
                   }
                   m2.mspeed(::r2);
                   //Serial.print("Wheel 2: ");
-                  //Serial.print(r2);
+                  //Serial.print(::r2);
                   break;
                 case 5*(BOTID-1)+3:
                   ::r3 = s.toInt();
-                    ::r3 = 3*::r3/2;
+                  //if(::r1 < 0)
+                  //  ::r3 = 3*::r3/2;
+                  ::r3 = ::r3 * 2;
+                  ::r3 = ::r3 - 255;
                   if(::r3 > 255){
                     ::r3 = 255;
                   }
@@ -99,7 +108,7 @@ void loop()
                   //::r3 = rerange(::r3);
                   m3.mspeed(::r3);
                   //Serial.print("Wheel 3: ");
-                  //Serial.print(r3);
+                  //Serial.println(::r3);
                   break;
                 case 5*(BOTID-1)+4:
                   
