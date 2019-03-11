@@ -24,7 +24,7 @@ def b1t(msg):
     vx = msg.linear.x
     vy = msg.linear.y
     b1lt.linear.x = vx*b1cos + vy*b1sin
-    b1lt.linear.y = -vy*b1sin + vx*b1cos
+    b1lt.linear.y = -vx*b1sin + vy*b1cos
     b1lt.angular.z = msg.angular.z
     return 0
 
@@ -35,7 +35,7 @@ def b2t(msg):
     vx = msg.linear.x
     vy = msg.linear.y
     b2lt.linear.x = vx*b2cos + vy*b2sin
-    b2lt.linear.y = -vy*b2sin + vx*b2cos
+    b2lt.linear.y = -vx*b2sin + vy*b2cos
     b2lt.angular.z = msg.angular.z
     return 0
 
@@ -45,8 +45,8 @@ def b3t(msg):
     global b1lt
     vx = msg.linear.x
     vy = msg.linear.y
-    b3lt.linear.x = vx*b3cos + vy*b3sin
-    b3lt.linear.y = -vy*b3sin + vx*b3cos
+    b3lt.linear.x = vx*b3cos - vy*b3sin
+    b3lt.linear.y = vx*b3sin + vy*b3cos
     b3lt.angular.z = msg.angular.z
     return 0
 
@@ -56,8 +56,8 @@ def b4t(msg):
     global b1lt
     vx = msg.linear.x
     vy = msg.linear.y
-    b4lt.linear.x = vx*b4cos + vy*b4sin
-    b4lt.linear.y = -vy*b4sin + vx*b4cos
+    b4lt.linear.x = vx*b4cos - vy*b4sin
+    b4lt.linear.y = vx*b4sin + vy*b4cos
     b4lt.angular.z = msg.angular.z
     return 0
 
