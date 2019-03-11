@@ -71,8 +71,8 @@ def talker():
                 wz = 0.1
             if( ( LB ==0 and RB == 0 ) or ( LB==1 and RB == 1 ) ):
                 wz = 0
-            vx = vx*0.06 
-            vy = -vy*0.06 
+            vx = -vx*0.06 
+            vy = vy*0.06 
 
             if ds < 0:
                 ds = 0 ## value from 0 to 1
