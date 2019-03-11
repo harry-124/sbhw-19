@@ -4,6 +4,7 @@ from std_msgs.msg import Int32
 from geometry_msgs.msg import Twist
 import XBee_Threaded
 from time import sleep
+print 'Turn on the bots'
 print 'Enter port  number /dev/ttyACM'
 st="/dev/ttyACM"
 port = raw_input()
