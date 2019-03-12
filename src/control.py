@@ -38,21 +38,29 @@ def b4p(msg):
 
 def mb1(msg):
     global bmov1
+    global reached
+    reached[0] = 0
     bmov1 = msg
     return 0
 
 def mb2(msg):
     global bmov2
+    global reached
+    reached[1] = 0
     bmov2 = msg
     return 0
 
 def mb3(msg):
     global bmov3
+    global reached
+    reached[2] = 0
     bmov3 = msg
     return 0
 
 def mb4(msg):
     global bmov4
+    global reached
+    reached[3] = 0
     bmov4 = msg
     return 0
 
@@ -65,7 +73,7 @@ def pid(bp,bmov,bn):
     x = bp.position.x
     y = bp.position.y
     print 'togo',xtg,ytg,'at',x,y
-    if x == xtg or y == ytg:
+    if x == xtg and y == ytg:
         tw.linear.x = 0
         tw.linear.y = 0
         reached[bn] = 1
@@ -115,19 +123,19 @@ def run():
     pubv4= rospy.Publisher('bot4twistglobal',Twist,queue_size = 10)
     while(True):
         if reached[0]==0 and bmov1.mode == 1:
-            tw1 = pid(bp1,bmov1,1)
+            tw1 = pid(bp1,bmov1,0)
             bmov1.mode = 0
             pubv1.publish(tw1)
         if reached[1]==0 and bmov2.mode == 1:
-            tw2 = pid(bp2,bmov2,2)
+            tw2 = pid(bp2,bmov2,1)
             bmov2.mode = 0
             pubv2.publish(tw2)
         if reached[2]==0 and bmov3.mode == 1:
-            tw3 = pid(bp3,bmov3,3)
+            tw3 = pid(bp3,bmov3,2)
             bmov3.mode = 0
             pubv3.publish(tw3)
         if reached[3]==0 and bmov4.mode == 1:
-            tw4 = pid(bp4,bmov4,4)
+            tw4 = pid(bp4,bmov4,3)
             bmov4.mode = 0
             pubv4.publish(tw4)
         rate.sleep()
