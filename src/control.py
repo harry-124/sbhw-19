@@ -67,11 +67,14 @@ def mb4(msg):
 def pid(bp,bmov,bn):
     global reached
     tw = Twist()
-    kp = 1
     xtg = bmov.x
     ytg = bmov.y
+    kpr = 0.1
+    thetap = bmov.thetap
     x = bp.position.x
     y = bp.position.y
+    z = bp.orientation.z
+    theta = 2*m.atan(z)
     print 'togo',xtg,ytg,'at',x,y
     if x == xtg and y == ytg:
         tw.linear.x = 0
@@ -80,6 +83,17 @@ def pid(bp,bmov,bn):
     else:
         ex = xtg - x
         ey = ytg - y
+        if (abs(bmov.thetap-theta)>0.1 and bmov.thetap <= 6.28 and bmov.thetap >= 0):
+            if(abs(bmov.thetap-theta)<(6.28-abs(bmov.thetap-theta))):
+                f = (bmov.thetap-theta)/abs(bmov.thetap-theta)
+                e = abs(bmov.thetap-theta)
+                thetad = (e*kpr)*(f)
+            else:
+                f = (bmov.thetap-theta)/abs(bmov.thetap-theta)
+                e = 6.28 - abs(bmov.thetap-theta)
+                thetad = -((e*kpr))*(f)        
+        else:
+            thetad = 0
         vx = ex
         vy = ey
         norm = vx**2 + vy**2
@@ -91,10 +105,36 @@ def pid(bp,bmov,bn):
             norm = 1
         vx = 0.06*vx*norm
         vy = 0.06*vy*norm
-        print vx,vy
         tw.linear.x = vx
         tw.linear.y = vy
+        tw.angular.z = thetad
     return tw
+
+def velcmd(bp,bmov):
+    kpr = 0.1
+    tw = Twist()
+    tw.linear.x = bmov.mag*m.cos(bmov.thetav)/0.06
+    tw.linear.y = bmov.mag*m.sin(bmov.thetav)/0.06
+    print tw.linear.x,tw.linear.y
+    x = bp.position.x
+    y = bp.position.y
+    z = bp.orientation.z
+    theta = 2*m.atan(z)
+    if (abs(bmov.thetap-theta)>0.1 and bmov.thetap <= 6.28 and bmov.thetap >= 0):
+        if(abs(bmov.thetap-theta)<(6.28-abs(bmov.thetap-theta))):
+            f = (bmov.thetap-theta)/abs(bmov.thetap-theta)
+            e = abs(bmov.thetap-theta)
+            thetad = (e*kpr)*(f)
+        else:
+            f = (bmov.thetap-theta)/abs(bmov.thetap-theta)
+            e = 6.28 - abs(bmov.thetap-theta)
+            thetad = -((e*kpr))*(f)        
+    else:
+        thetad = 0
+        print tw.linear.x , tw.linear.y
+    tw.angular.z = thetad
+    return tw
+        
 
 def run():
     global reached
@@ -114,11 +154,11 @@ def run():
     rospy.Subscriber("bot3pose", Pose, b3p)
     rospy.Subscriber("bot4pose", Pose, b4p)
     rospy.Subscriber("bot1mov",mov,mb1)
-    rospy.Subscriber("bot2mov",mov,mb2)
+    #rospy.Subscriber("bot2mov",mov,mb2)
     rospy.Subscriber("bot3mov",mov,mb3)
     rospy.Subscriber("bot4mov",mov,mb4)
     pubv1 = rospy.Publisher('bot1twistglobal',Twist,queue_size = 10)
-    pubv2 = rospy.Publisher('bot2twistglobal',Twist,queue_size = 10)
+    #pubv2 = rospy.Publisher('bot2twistglobal',Twist,queue_size = 10)
     pubv3 = rospy.Publisher('bot3twistglobal',Twist,queue_size = 10)
     pubv4= rospy.Publisher('bot4twistglobal',Twist,queue_size = 10)
     while(True):
@@ -126,10 +166,15 @@ def run():
             tw1 = pid(bp1,bmov1,0)
             bmov1.mode = 0
             pubv1.publish(tw1)
-        if reached[1]==0 and bmov2.mode == 1:
+        """if reached[1]==0 and bmov2.mode == 1:
             tw2 = pid(bp2,bmov2,1)
             bmov2.mode = 0
             pubv2.publish(tw2)
+        elif bmov2.mode == 2:
+            print 'nadakkudhu'
+            twc = velcmd(bp2,bmov2)
+            bmov2.mode = 0
+            pubv2.publish(twc)"""
         if reached[2]==0 and bmov3.mode == 1:
             tw3 = pid(bp3,bmov3,2)
             bmov3.mode = 0

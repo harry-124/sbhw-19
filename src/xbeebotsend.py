@@ -196,7 +196,7 @@ def run():
     global k3
     global k4
     rospy.init_node('listener', anonymous=True)
-    rate = rospy.Rate(20)
+    rate = rospy.Rate(10)
     rospy.Subscriber("bot1twist", Twist, b1t)
     rospy.Subscriber("bot2twist", Twist, b2t)
     rospy.Subscriber("bot3twist", Twist, b3t)
