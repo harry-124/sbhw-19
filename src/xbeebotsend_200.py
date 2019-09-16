@@ -293,7 +293,6 @@ def run():
     global k4
     rospy.init_node('listener', anonymous=True)
     rate = rospy.Rate(10)
-    rospy.Subscriber("/usb_cam/camera_info", CameraInfo, camcb)
     rospy.Subscriber("bot1twist", Twist, b1t)
     rospy.Subscriber("bot2twist", Twist, b2t)
     rospy.Subscriber("bot3twist", Twist, b3t)
