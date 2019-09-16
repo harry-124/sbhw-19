@@ -53,17 +53,6 @@ count3 = [0,0,0]
 count4 = [0,0,0]
 
 
-def camcb(msg):
-    '''
-    Callback to get frame number with /usb_cam/camera_info as t
-    '''
-    global t_flag
-    global t
-    global t0
-    if t_flag == 0:
-        t0 = msg.header.seq
-        t_flag = 1
-    t = msg.header.seq - t0
 
    
 def torque_encode(w1,w2,w3,state,count):
@@ -88,7 +77,6 @@ def torque_encode(w1,w2,w3,state,count):
             count1 += 1
     else:
         state1 = 0
-        t1 = 0
         count1 = 0
     
     if abs(w2) > thresh:
@@ -101,7 +89,6 @@ def torque_encode(w1,w2,w3,state,count):
             count2 += 1
     else:
         state2 = 0
-        t2 = 0
         count2 = 0
    
 
@@ -115,7 +102,6 @@ def torque_encode(w1,w2,w3,state,count):
             count3 += 1
     else:
         state3 = 0
-        t3 = 0
         count3 = 0
    
     state = [state1,state2,state3]
