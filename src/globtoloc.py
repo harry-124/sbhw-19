@@ -102,6 +102,9 @@ def b4p(msg):
     return 0
 
 def run():
+    '''
+    program to apply global to local tranform to bot speed
+    '''
     global b1lt
     global b2lt
     global b3lt
