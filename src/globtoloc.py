@@ -66,7 +66,6 @@ def b1p(msg):
     global b1cos
     qz = msg.orientation.z
     yaw = 2*m.atan(qz)
-    print('bot1',yaw)
     b1sin = m.sin(yaw)
     b1cos = m.cos(yaw)
     return 0
@@ -76,7 +75,6 @@ def b2p(msg):
     global b2cos
     qz = msg.orientation.z
     yaw = 2*m.atan(qz)
-    print('bot2',yaw)
     b2sin = m.sin(yaw)
     b2cos = m.cos(yaw)
     return 0
@@ -86,7 +84,6 @@ def b3p(msg):
     global b3cos
     qz = msg.orientation.z
     yaw = 2*m.atan(qz)
-    print('bot3',yaw)
     b3sin = m.sin(yaw)
     b3cos = m.cos(yaw)
     return 0
@@ -96,7 +93,6 @@ def b4p(msg):
     global b4cos
     qz = msg.orientation.z
     yaw = 2*m.atan(qz)
-    print('bot4',yaw)
     b4sin = m.sin(yaw)
     b4cos = m.cos(yaw)
     return 0
