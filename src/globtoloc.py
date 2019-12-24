@@ -71,10 +71,6 @@ def b4t(msg):
     b4lt.angular.z = msg.angular.z
     return 0"""
 def bot_ctrl(msg):
-    global tag
-    global kx
-    global ky
-    global thetad
     global b1sin
     global b1cos
     global b1lt
@@ -87,22 +83,23 @@ def bot_ctrl(msg):
     global b4sin
     global b4cos
     global b4lt
-    if(msg.tag==1):
-        b1lt.linear.x=kx*b1cos + ky*b1sin
-        b1lt.linear.y=-kx*b1sin + ky*b1cos
-        b1lt.angular.z=thetad
+    if(msg.tag==0):
+        b1lt.linear.x=msg.kx
+        b1lt.linear.y=msg.ky
+        b1lt.angular.z=msg.thetad
+        print(msg)
+    elif(msg.tag==1):
+        b2lt.linear.x=msg.kx*b2cos + msg.ky*b2sin
+        b2lt.linear.y=-msg.kx*b2sin + msg.ky*b2cos
+        b2lt.angular.z=msg.thetad
     elif(msg.tag==2):
-        b2lt.linear.x=kx*b2cos + ky*b2sin
-        b2lt.linear.y=-kx*b2sin + ky*b2cos
-        b2lt.angular.z=thetad
+        b3lt.linear.x=msg.kx*b3cos + msg.ky*b3sin
+        b3lt.linear.y=-msg.kx*b3sin + msg.ky*b3cos
+        b3lt.angular.z=msg.thetad
     elif(msg.tag==3):
-        b3lt.linear.x=kx*b3cos + ky*b3sin
-        b3lt.linear.y=-kx*b3sin + ky*b3cos
-        b3lt.angular.z=thetad
-    elif(msg.tag==4):
-        b4lt.linear.x=kx*b4cos + ky*b4sin
-        b4lt.linear.y=-kx*b4sin + ky*b4cos
-        b4lt.angular.z=thetad
+        b4lt.linear.x=msg.kx*b4cos + msg.ky*b4sin
+        b4lt.linear.y=-msg.kx*b4sin + msg.ky*b4cos
+        b4lt.angular.z=msg.thetad
     else:
         pass
     return 0
