@@ -125,8 +125,8 @@ def invk(tw):
     applies ik given vx,vy,omega
     Returns w1,w1 w3
     '''
-    sl = 19.0
-    intercept = 160.0
+    sl = 22.0
+    intercept = 120.0
     vx = tw.linear.x
     vy = tw.linear.y
     wz = tw.angular.z

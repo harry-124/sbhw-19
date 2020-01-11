@@ -84,8 +84,8 @@ def bot_ctrl(msg):
     global b4cos
     global b4lt
     if(msg.tag==0):
-        b1lt.linear.x=msg.kx
-        b1lt.linear.y=msg.ky
+        b1lt.linear.x = -(msg.kx*b1cos + msg.ky*b1sin)
+        b1lt.linear.y =-(-msg.kx*b1sin + msg.ky*b1cos)
         b1lt.angular.z=msg.thetad
         print(msg)
     elif(msg.tag==1):
