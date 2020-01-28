@@ -125,8 +125,8 @@ def invk(tw):
     applies ik given vx,vy,omega
     Returns w1,w1 w3
     '''
-    sl = 21.0
-    intercept = 140.0
+    sl = 22.0
+    intercept = 120.0
     vx = tw.linear.x
     vy = tw.linear.y
     wz = tw.angular.z
@@ -192,7 +192,7 @@ def b1t(msg):
     global state1
     global count1
     w1b1,w2b1,w3b1 = invk(msg)
-    w1b1,w2b1,w3b1,state1,count1 = torque_encode(w1b1,w2b1,w3b1,state1,count1)
+    #w1b1,w2b1,w3b1,state1,count1 = torque_encode(w1b1,w2b1,w3b1,state1,count1)
     w1b1,w2b1,w3b1 = encode(w1b1,w2b1,w3b1)
     return 0
 
@@ -203,7 +203,7 @@ def b2t(msg):
     global state2
     global count2
     w1b2,w2b2,w3b2 = invk(msg)
-    w1b2,w2b2,w3b2,state2,count2 = torque_encode(w1b2,w2b2,w3b2, state2,count2)
+    #w1b2,w2b2,w3b2,state2,count2 = torque_encode(w1b2,w2b2,w3b2, state2,count2)
     w1b2,w2b2,w3b2 = encode(w1b2,w2b2,w3b2)
     return 0
 
@@ -214,7 +214,7 @@ def b3t(msg):
     global state3
     global count3
     w1b3,w2b3,w3b3 = invk(msg)
-    w1b3,w2b3,w3b3,state3,count3 = torque_encode(w1b3,w2b3,w3b3,state3,count3)
+    #w1b3,w2b3,w3b3,state3,count3 = torque_encode(w1b3,w2b3,w3b3,state3,count3)
     w1b3,w2b3,w3b3 = encode(w1b3,w2b3,w3b3)
     return 0
 
@@ -226,7 +226,7 @@ def b4t(msg):
     global count4
     state4
     w1b4,w2b4,w3b4 = invk(msg)
-    w1b4,w2b4,w3b4,state4,count4 = torque_encode(w1b4,w2b4,w3b4,state4,count4)
+    #w1b4,w2b4,w3b4,state4,count4 = torque_encode(w1b4,w2b4,w3b4,state4,count4)
     w1b4,w2b4,w3b4 = encode(w1b4,w2b4,w3b4)
     return 0
 

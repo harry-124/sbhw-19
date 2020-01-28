@@ -1,0 +1,5 @@
+<launch>
+<node name="global_to_local" pkg="sbhw" type="globtoloc.py" respawn="false" output="screen" />
+<node name="local_joystick" pkg="sbhw" type="hw_joystick.py" respawn="false" output="screen" />
+<node name="Comms" pkg="sbhw" type="xbeebotsend_200.py" respawn="false" output="screen" />
+</launch>

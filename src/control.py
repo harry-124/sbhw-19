@@ -94,8 +94,8 @@ def pid(bp,bmov,bn):
                 thetad = -((e*kpr))*(f)        
         else:
             thetad = 0
-        vx = ex
-        vy = ey
+        vx = ex*0.8
+        vy = ey*0.8
         norm = vx**2 + vy**2
         norm = m.sqrt(norm)
         vx = vx/norm
