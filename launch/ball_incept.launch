@@ -20,7 +20,7 @@
   </node>
   <node name="globtoloc" pkg="sbhw" type="globtoloc.py" respawn="false"/>
   <node name="xbeecomms" pkg="sbhw" type="xbeebotsend_200.py" respawn="false"/>
-  <node name="p2p" pkg="sbsim" type="p2pctrl.py" respawn="false" >
+  <node name="p2p" pkg="sbsim" type="p2pctrl.py" respawn="false" output="screen"> 
       <remap from="/robot1n0/pose" to="/bot1pose"/>
   </node>
   <node name="traj_gen" pkg="sbsim" type="traj_gen.py" respawn="false" output="screen">
@@ -30,6 +30,10 @@
     <remap from="/robot1n0/pose" to="/bot1pose"/>
   </node>
 
+  <node pkg="sbsim" name="Solver" type="grid_find.py" output = "screen">
+    <remap from="/robot1n0/pose" to="/bot1pose"/>
+    <remap from="/robot1n0/twist" to="/bot1twistmeas"/>
+  </node>
   <node name="botdata" pkg="sbip" type="getbotdata.py" respawn="false" output="screen"/>
   <node name="balldata" pkg="sbip" type="getballdata.py" respawn="false" output="screen"/>
   <node name="balltwist" pkg="sbip" type="ballspeed.py" respawn="false" output="screen"/>
